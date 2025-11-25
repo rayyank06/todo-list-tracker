@@ -1,0 +1,113 @@
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h2 class="mb-0">
+                        <i class="fas fa-edit"></i> Edit Task
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/tasks/edit/<%= task._id %>" method="POST" class="needs-validation" novalidate>
+                        
+                        <!-- Task Title -->
+                        <div class="mb-4">
+                            <label for="title" class="form-label">
+                                <i class="fas fa-heading"></i> Task Title <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control form-control-lg" 
+                                   id="title" 
+                                   name="title" 
+                                   value="<%= task.title %>"
+                                   required
+                                   maxlength="100">
+                            <div class="invalid-feedback">
+                                Please enter a task title.
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label for="description" class="form-label">
+                                <i class="fas fa-align-left"></i> Description
+                            </label>
+                            <textarea class="form-control" 
+                                      id="description" 
+                                      name="description" 
+                                      rows="3"
+                                      maxlength="500"><%= task.description || '' %></textarea>
+                            <div class="form-text">Optional - Up to 500 characters</div>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="mb-4">
+                            <label for="dueDate" class="form-label">
+                                <i class="far fa-calendar"></i> Due Date <span class="text-danger">*</span>
+                            </label>
+                            <input type="date" 
+                                   class="form-control" 
+                                   id="dueDate" 
+                                   name="dueDate" 
+                                   value="<%= new Date(task.dueDate).toISOString().split('T')[0] %>"
+                                   required>
+                            <div class="invalid-feedback">
+                                Please select a due date.
+                            </div>
+                        </div>
+
+                        <!-- Priority -->
+                        <div class="mb-4">
+                            <label for="priority" class="form-label">
+                                <i class="fas fa-exclamation-circle"></i> Priority <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="priority" name="priority" required>
+                                <option value="Low" <%= task.priority === 'Low' ? 'selected' : '' %>>Low</option>
+                                <option value="Medium" <%= task.priority === 'Medium' ? 'selected' : '' %>>Medium</option>
+                                <option value="High" <%= task.priority === 'High' ? 'selected' : '' %>>High</option>
+                            </select>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <label for="status" class="form-label">
+                                <i class="fas fa-check-circle"></i> Status
+                            </label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="Not Done" <%= task.status === 'Not Done' ? 'selected' : '' %>>Not Done</option>
+                                <option value="Done" <%= task.status === 'Done' ? 'selected' : '' %>>Done</option>
+                            </select>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/tasks" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success btn-lg btn-custom">
+                                <i class="fas fa-save"></i> Update Task
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form Validation Script -->
+<script>
+(function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+        }, false)
+    })
+})()
+</script>
