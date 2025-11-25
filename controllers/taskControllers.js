@@ -1,7 +1,7 @@
-// Task Controller - Handles all task-related operations (CRUD)
+//  Handles all task related operations (
 const Task = require('../models/task');
 
-// Home page - splash screen
+// Home page 
 exports.home = (req, res) => {
     res.render('home', { title: 'Home' });
 };
@@ -9,7 +9,6 @@ exports.home = (req, res) => {
 // Display all tasks
 exports.getAllTasks = async (req, res) => {
     try {
-        // Fetch all tasks from database, sorted by due date
         const tasks = await Task.find().sort({ dueDate: 1 });
         res.render('tasks/list', { 
             title: 'All Tasks', 
@@ -25,15 +24,15 @@ exports.getAllTasks = async (req, res) => {
     }
 };
 
-// Show form to add new task
+//  form to add new task
 exports.showAddForm = (req, res) => {
     res.render('tasks/add', { title: 'Add New Task' });
 };
 
-// Create new task (POST)
+// Create new task 
 exports.createTask = async (req, res) => {
     try {
-        // Create new task from form data
+        //  new task from form data
         const newTask = new Task({
             title: req.body.title,
             description: req.body.description,
@@ -58,10 +57,9 @@ exports.createTask = async (req, res) => {
     }
 };
 
-// Show form to edit existing task
+//  form to edit existing task
 exports.showEditForm = async (req, res) => {
     try {
-        // Find task by ID
         const task = await Task.findById(req.params.id);
         
         if (!task) {
@@ -86,7 +84,7 @@ exports.showEditForm = async (req, res) => {
     }
 };
 
-// Update existing task (POST)
+// Update existing task 
 exports.updateTask = async (req, res) => {
     try {
         // Find task and update with new data
@@ -99,7 +97,7 @@ exports.updateTask = async (req, res) => {
                 priority: req.body.priority,
                 status: req.body.status
             },
-            { new: true, runValidators: true } // Return updated document and validate
+            { new: true, runValidators: true } 
         );
         
         if (!updatedTask) {
@@ -125,7 +123,6 @@ exports.updateTask = async (req, res) => {
 // Show delete confirmation page
 exports.showDeleteConfirm = async (req, res) => {
     try {
-        // Find task to delete
         const task = await Task.findById(req.params.id);
         
         if (!task) {
@@ -150,10 +147,10 @@ exports.showDeleteConfirm = async (req, res) => {
     }
 };
 
-// Delete task (POST)
+// Delete task
 exports.deleteTask = async (req, res) => {
     try {
-        // Find and delete task
+        
         const deletedTask = await Task.findByIdAndDelete(req.params.id);
         
         if (!deletedTask) {
