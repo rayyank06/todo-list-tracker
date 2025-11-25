@@ -1,7 +1,7 @@
 To-Do List Tracker
 A simple task management application built with Node.js, Express, MongoDB, and Bootstrap for INFR3120.
 Live Demo
-Hosted at: 
+Hosted at: https://todo-list-tracker-n31w.onrender.com
 GitHub: https://github.com/rayyank/todo-list-tracker
 About
 This is a to-do list tracker where users can add, edit, complete, and delete tasks. All tasks are saved in MongoDB so they persist between sessions. The app demonstrates full CRUD operations and uses responsive design to work on any device.
@@ -21,23 +21,6 @@ Mark tasks as complete or not done
 Delete tasks with confirmation page
 Color-coded priority levels (High, Medium, Low)
 Responsive design for mobile and desktop
-
-Installation
-
-Clone the repo:
-
-bashgit clone https://github.com/rayyank/todo-list-tracker.git
-cd todo-list-tracker
-
-Install dependancies:
-
-bashnpm install
-
-Run the app:
-
-bashnpm run dev
-
-Open browser to http://localhost:3000
 
 Routes
 
@@ -62,12 +45,6 @@ package.json
 Database Schema
 Tasks include:
 
-Title 
-Description 
-Due date 
-Priority
-Status
-Timestamps
 
 Security
 
@@ -76,5 +53,5 @@ MongoDB URI stored in environment variables
 Input validation on forms
 Error handling throughout app
 
-Rayyan Khan
+Rayyan Khan - 100978573
 INFR3120 - Web and Script Programming
