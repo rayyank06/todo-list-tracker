@@ -41,6 +41,6 @@ app.use((req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
-    console.log(`📝 To-Do List Tracker is ready!`);
+    console.log(` Server is running on http://localhost:${PORT}`);
+    console.log(` To-Do List Tracker is ready!`);
 });
